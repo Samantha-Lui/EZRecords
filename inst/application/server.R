@@ -31,6 +31,8 @@ shinyServer(function(input, output, session){ #start Server
     rvs$err_js <- character(0) # Warnings for inputs during the item adding process
     rvs$err2_js <- character(0) # Warnings for inputs after the list of added items is confirmed
     
+    inv <- readRDS("invoice_object.Rds") # The unique invoice object for a particular user
+    
     observeEvent(input$add_js, {
         ## Check for validity of inputs during the item adding process
         ## Error message(s) will be generated and displayed on the app if there is an error;
@@ -86,7 +88,6 @@ shinyServer(function(input, output, session){ #start Server
             }
         else{
             if(length(rvs$items_js@items)>0){
-                inv <- readRDS("invoice_object.Rds")
                 transaction <- new('product_transac',
                                    date = date_js(),
                                    transac = 'credit',
@@ -274,7 +275,7 @@ shinyServer(function(input, output, session){ #start Server
                 rvs$items_jp <- new('all_items')
                 reset_all(c('date_jp','supplier_jp','order_jp', 'shipment_jp', 'tax_jp'))
                 rvs$subtotal_jp <- 0
-                update_basic_struct(data=rvs$curData, purchase=rvs$purchase_jp, "current.Rds")
+                rvs$curData <- update_basic_struct(data=rvs$curData, purchase=rvs$purchase_jp, "current.Rds")
                 rvs$purchase_jp <- data.frame()
                 }
             }
@@ -435,7 +436,7 @@ shinyServer(function(input, output, session){ #start Server
                 rvs$items_jo <- new('all_items')
                 reset_all(c('date_jo','category_jo', 'supplier_jo','order_jo', 'shipment_jo', 'tax_jo'))
                 rvs$subtotal_jo <- 0
-                update_basic_struct(data=rvs$curOData, purchase=rvs$purchase_jo, "other_current.Rds")
+                rvs$curOData <- update_basic_struct(data=rvs$curOData, purchase=rvs$purchase_jo, "other_current.Rds")
                 rvs$purchase_jo <- data.frame()
                 }
             }
@@ -526,7 +527,7 @@ shinyServer(function(input, output, session){ #start Server
         rvs$curOData <- rvs$results_ju[[3]]
         rvs$logs_other <- rvs$results_ju[[4]]
         # A warning/error message is issued if there is problem with the process
-        # character(0) is returned otherwise
+        # or else a notification of the successful process 
         rvs$err_ju <- rvs$results_ju[[5]]
         reset_all('append_ju')
         }

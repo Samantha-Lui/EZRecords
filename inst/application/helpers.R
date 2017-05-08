@@ -31,17 +31,16 @@ process_upload_data <- function(data, append = TRUE,
     # Check if any of the uploaded entries have already existed in the database
     # if the uploaded data is opted to append to the existing data.
     # The duplicate rows will be ignored in the process.
-    rows_already_existed <- character(0)
+    rows_already_existed <- '<font size=\'4\', color=\"#42d162\"><b>Uploaded data has been successfully processed.</b></font>'
     if(append){
         duplicate_prod <- prod$id[duplicate_records(ex_prod_log, prod$date, prod$order_no, prod$supplier_customer)]
         duplicate_other <- other$id[duplicate_records(ex_other_log, other$date, other$order_no, other$supplier_customer)]
         d <- sort(c(duplicate_prod, duplicate_other))
-        rows_already_existed <- paste('<font size=\'4\', color=\"#C65555\"><b>', 'Row(s):', paste(d, collapse=', '), 
-                                      'already existed in the database and was/were ignored.', '</b></font>')
-        if(!identical(d, integer(0)))
-            data <- subset(data, ! id %in% d)
-        else
-            rows_already_existed <- character(0)
+        if(!identical(d, integer(0))){
+          rows_already_existed <- paste('<font size=\'4\', color=\"#C65555\"><b>', 'Row(s):', paste(d, collapse=', '), 
+                                        'already existed in the database and was/were ignored.', '</b></font>')
+          data <- subset(data, ! id %in% d)
+        }
         data$id <- NULL
         prod <- subset(data, transac %in% c('sale', 'purchase'))
         other <- subset(data, transac == 'other')
@@ -136,6 +135,7 @@ process_upload_data <- function(data, append = TRUE,
     saveRDS(pl, file = xpl_fname)
     saveRDS(skeleton_other, file = xos_fname)
     saveRDS(ol, file = xol_fname)
+    
     # Return results to continue calulations in the app
     results <- list(skeleton_prod, pl, skeleton_other, ol, rows_already_existed)
     return(results)
@@ -625,6 +625,7 @@ update_basic_struct <- function(purchase, data, fname){
         data <- df
         saveRDS(data, file=fname)
     }
+    df
 }
 
 

@@ -363,6 +363,9 @@ ui = tagList(useShinyjs(),
                                                                               selected = TRUE, inline = TRUE),
                                                                  br()
                                                           ),
+                                                          # column(12, 
+                                                          #        br(),
+                                                          #        htmlOutput("err_ju")),
                                                           column(12,
                                                                  br(),
                                                                  h4('The data from the uploaded file will be added to the database by the selected method above (append/overwrite).',
@@ -370,10 +373,10 @@ ui = tagList(useShinyjs(),
                                                                  br(),
                                                                  h4('Click the button below to confirm.', style = "color:blue"),
                                                                  br(),
-                                                                 actionButton("finish_ju", label = "Confirm")),
-                                                          column(12, 
+                                                                 htmlOutput("err_ju"),
                                                                  br(),
-                                                                 htmlOutput("err_ju"))
+                                                                 actionButton("finish_ju", label = "Confirm"))
+                                                          
                                                           ))
                                              ## end J:Upload
                                  )
