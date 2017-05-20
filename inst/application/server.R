@@ -5,6 +5,10 @@ library(dplyr)
 library(EZRecords) # Package created by Samantha Lui
 
 source('helpers.R') # Helper functions
+# files <- list.files('./helpers')
+# sources <- paste('source(\"', paste('./helpers', files, sep = '/'), '\")', sep = '')
+# for(i in 1:length(sources))
+#   eval(parse(text=sources[i]))
 
 
 shinyServer(function(input, output, session){ #start Server
@@ -32,6 +36,7 @@ shinyServer(function(input, output, session){ #start Server
     rvs$err2_js <- character(0) # Warnings for inputs after the list of added items is confirmed
     
     inv <- readRDS("invoice_object.Rds") # The unique invoice object for a particular user
+    rvs$inv_df <- readRDS("m1314_inovice.Rds") # Added for demonstration purposes
     
     observeEvent(input$add_js, {
         ## Check for validity of inputs during the item adding process
@@ -88,22 +93,27 @@ shinyServer(function(input, output, session){ #start Server
             }
         else{
             if(length(rvs$items_js@items)>0){
+                ## Added for demonstration purposes
+                invoice_demo <- invoice.demo(inv, rvs$is_sampling_js, rvs$inv_df)
+                rvs$inv_df <- invoice_demo[[2]]
+              
                 transaction <- new('product_transac',
                                    date = date_js(),
                                    transac = 'credit',
                                    category = 'sale',
                                    descrp = rvs$items_js,
                                    supplier_customer = customer_js(),
-                                   order_no = invoice(inv, rvs$is_sampling_js),
+                                   order_no = invoice_demo[[1]],
                                    value = rvs$subtotal_js,
                                    tax = tax_js(),
                                    shipment = shipment_js(),
                                    total = sum(rvs$subtotal_js, shipment_js(), tax_js()),
                                    time_stamp = Sys.time())
                 rvs$logs_product <- add(rvs$logs_product, transaction)
-                backup = paste('pl', Sys.Date(), 'Rds', sep='.')
-                saveRDS(rvs$logs_product, file="product_logs_current.Rds")
-                saveRDS(rvs$logs_product, file=backup) # The record is also saved in a backup file
+                ## The following 3 lines are commented for demo
+                # backup = paste('pl', Sys.Date(), 'Rds', sep='.')
+                # saveRDS(rvs$logs_product, file="product_logs_current.Rds")
+                # saveRDS(rvs$logs_product, file=backup) # The record is also saved in a backup file
                 ## Resets everything for a fresh start in the next round
                 rvs$items_js <- new('all_items')
                 reset_all(c('date_js','supplier_js','order_js','sample_js','sampling_js','shipment_js', 'tax_js'))
@@ -269,13 +279,14 @@ shinyServer(function(input, output, session){ #start Server
                                    total = sum(rvs$subtotal_jp, shipment_jp(), tax_jp()),
                                    time_stamp = Sys.time())
                 rvs$logs_product <- add(rvs$logs_product, transaction)
-                backup = paste('pl', Sys.Date(), 'Rds', sep='.')
-                saveRDS(rvs$logs_product, file="product_logs_current.Rds")
-                saveRDS(rvs$logs_product, file=backup)
+                ## The following 3 lines are commented for demo
+                # backup = paste('pl', Sys.Date(), 'Rds', sep='.')
+                # saveRDS(rvs$logs_product, file="product_logs_current.Rds")
+                # saveRDS(rvs$logs_product, file=backup)
                 rvs$items_jp <- new('all_items')
                 reset_all(c('date_jp','supplier_jp','order_jp', 'shipment_jp', 'tax_jp'))
                 rvs$subtotal_jp <- 0
-                rvs$curData <- update_basic_struct(data=rvs$curData, purchase=rvs$purchase_jp, "current.Rds")
+                rvs$curData <- update_basic_struct.demo(data=rvs$curData, purchase=rvs$purchase_jp, "current.Rds")
                 rvs$purchase_jp <- data.frame()
                 }
             }
@@ -430,13 +441,14 @@ shinyServer(function(input, output, session){ #start Server
                                    total = sum(rvs$subtotal_jo, shipment_jo(), tax_jo()),
                                    time_stamp = Sys.time())
                 rvs$logs_other <- add(rvs$logs_other, transaction)
-                backup = paste('ol', Sys.Date(), 'Rds', sep='.')
-                saveRDS(rvs$logs_other, file="other_logs_current.Rds")
-                saveRDS(rvs$logs_other, file=backup)
+                ## The following 3 lines are commented for demo
+                # backup = paste('ol', Sys.Date(), 'Rds', sep='.')
+                # saveRDS(rvs$logs_other, file="other_logs_current.Rds")
+                # saveRDS(rvs$logs_other, file=backup)
                 rvs$items_jo <- new('all_items')
                 reset_all(c('date_jo','category_jo', 'supplier_jo','order_jo', 'shipment_jo', 'tax_jo'))
                 rvs$subtotal_jo <- 0
-                rvs$curOData <- update_basic_struct(data=rvs$curOData, purchase=rvs$purchase_jo, "other_current.Rds")
+                rvs$curOData <- update_basic_struct.demo(data=rvs$curOData, purchase=rvs$purchase_jo, "other_current.Rds")
                 rvs$purchase_jo <- data.frame()
                 }
             }
@@ -509,7 +521,7 @@ shinyServer(function(input, output, session){ #start Server
     append_ju <- reactive({input$append_ju})
     # Processes content of the uploaded file upon user's confirmation
     observeEvent(input$finish_ju, {
-        rvs$results_ju <- process_upload_data(data = upload_table_ju(),
+        rvs$results_ju <- process_upload_data.demo(data = upload_table_ju(),
                                            append = append_ju(),
                                            # ex_* are updated data to be returned for current session 
                                            ex_prod_skel = rvs$curData,
@@ -613,9 +625,10 @@ shinyServer(function(input, output, session){ #start Server
     model_vis <- reactive({input$model_vis})
     
     summaries <- reactive({incomes_spendings_summaries(info_jc(), dates_vis(), category_vis(), model_vis())})
-    output$ex1_vis <- renderDataTable(summaries()[[1]][1,])
-    output$ex2_vis <- renderDataTable(summaries()[[2]][1,])
-    output$ex3_vis <- renderDataTable(summaries()[[3]][1,])
+    output$ex1_vis <- renderDataTable(data.frame(category='slate', debit=344.68, credit=0, net=-344.68))
+    output$ex2_vis <- renderDataTable(data.frame(category='slate', model='SH-36', debit=344.68, credit=0, net=-344.68))
+    output$ex3_vis <- renderDataTable(data.frame(date='2017-01-01', category='slate', model='SH-36', price=123.4, 
+                                                 quantity=10, debit=123.4, credit=0, net=-123.4))
     summary_type_vis <- reactive({input$summary_type_vis})
     
     output$tempTable_vis <- renderDataTable(summaries()[[as.numeric(summary_type_vis())]])
@@ -676,6 +689,98 @@ shinyServer(function(input, output, session){ #start Server
         }
     )
     ### end V:Stock ###
+    
+    
+    
+    ## The following block is commented for demo
+    # ### start C:Invoice ###
+    # ## Shared across all sections in the Contrl Panel
+    # rvs$system_log <- readRDS('system_log.Rds')
+    # 
+    # fname_ci <- reactive({input$fname_ci})
+    # part1_ci  <- reactive({input$part1_ci})
+    # part2_ci  <- reactive({input$part2_ci})
+    # begin_ci <- reactive({input$begin_ci})
+    # rvs$err_ci <- ''
+    # observeEvent(input$finish_ci, {
+    #   ## Checks if the input of the parameter count_begins_at is valid
+    #   if(grepl('[^0-9]', begin_ci()) | !grepl('[0-9]', begin_ci()))
+    #     rvs$err_ci <- '<font size=\'4\', color=\"#C65555\"><b>\'Count begins at\' must contain only digits.</b></font>'
+    #   else{
+    #     customize_invoice(fname_ci(), part1_ci(), part2_ci(), begin_ci())
+    #     rvs$err_ci <- '<font size=\'4\', color=\"#42d162\"><b>Pattern for invoice number has been successfully created.</b></font>'
+    #     rvs$system_log <- system_log(5, 'Create', fname_ci())
+    #   }
+    # })
+    # output$err_ci <- renderText(rvs$err_ci)
+    # ### end C:Invoice ###
+    # 
+    # 
+    # 
+    # ### start C:Default ###
+    # choices_cd <- reactive({input$choices_cd})
+    # rvs$err_cd <- ''
+    # observeEvent(input$finish_cd, {
+    #   if(is.null(choices_cd()))
+    #     rvs$err_cd <- '<font size=\'4\', color=\"#C65555\"><b>Please select a file.</b></font>'
+    #   ## Updates current data to the default values
+    #   else{
+    #     results <- default_setting(choices_cd())
+    #     rvs$curData <- results[[1]]
+    #     rvs$curOData <- results[[2]]
+    #     rvs$logs_product <- results[[3]]
+    #     rvs$logs_other <- results[[4]]
+    #     rvs$err_cd <- "<font size=\'4\', color=\"#42d162\"><b>Selected file(s) has been resetted to the default value.</b></font>"
+    #     rvs$system_log <- system_log(choices_cd(), 'Set to default')
+    #   }
+    # })
+    # output$err_cd <- renderText(rvs$err_cd)
+    # ### end C:Default ###
+    # 
+    # 
+    # 
+    # ### start C:Update ###
+    # choices_cu <- reactive({input$choices_cu})
+    # rvs$err_cu <- ''
+    # observeEvent(input$finish_cu, {
+    #   if(is.null(choices_cu()))
+    #     rvs$err_cu <- '<font size=\'4\', color=\"#C65555\"><b>Please select a file.</b></font>'
+    #   else{
+    #     update_restore_point(choices_cu())
+    #     rvs$err_cu <- "<font size=\'4\', color=\"#42d162\"><b>Restore point for the selected file(s) has been updated.</b></font>"
+    #     rvs$system_log <- system_log(choices_cu(), 'Update restore point')
+    #   }
+    # })
+    # output$err_cu <- renderText(rvs$err_cu)
+    # ### end C:Update ###
+    # 
+    # 
+    # 
+    # ### start C:Restore ###
+    # choices_cr <- reactive({input$choices_cr})
+    # rvs$err_cr <- ''
+    # observeEvent(input$finish_cr, {
+    #   if(is.null(choices_cr()))
+    #     rvs$err_cr <- '<font size=\'4\', color=\"#C65555\"><b>Please select a file.</b></font>'
+    #   ## Updates current data to the restore values
+    #   else{
+    #     results <- restore_file(choices_cr())
+    #     rvs$curData <- results[[1]]
+    #     rvs$curOData <- results[[2]]
+    #     rvs$logs_product <- results[[3]]
+    #     rvs$logs_other <- results[[4]]
+    #     rvs$err_cr <- "<font size=\'4\', color=\"#42d162\"><b>Selected file(s) has been restored.</b></font>"
+    #     rvs$system_log <- system_log(choices_cr(), 'Restore')
+    #   }
+    # })
+    # output$err_cr <- renderText(rvs$err_cr)
+    # ### end C:Restore ###
+    
+    
+    
+    ### start C:System log ###
+    output$table_csc <- renderDataTable(rvs$system_log)
+    ### end C:System log ###
 
 }
 )#end Server

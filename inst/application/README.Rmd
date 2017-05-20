@@ -1,0 +1,33 @@
+# **EZRecords App**
+
+
+
+## Overview
+
+EZRecords App is an application designed for a small retail business for bookkeeping and management of stock. Upon 
+data entry of a transaction (sale, purchase of the materials, other expenses, etc), the status of stock 
+is updated, and the record of the transaction will be ready to view or use for future calculations and analyses.
+
+This application was built on R(3.3.2) and required public-licensed packages *shiny*, *shinyjs*, *dplyr*, and *tidyr* 
+and private package [*EZRecords*](https://github.com/Samantha-Lui/EZRecords).
+
+
+
+## Installation
+
+Please visit https://samantheluidatascience.shinyapps.io/EZRecords_App_Demo/ for demonstration.
+
+
+
+## Getting started
+
+
+
+
+
+## Functionality
+lalala
+
+
+
+## Related work
