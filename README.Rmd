@@ -8,6 +8,14 @@ EZRecords is a package built on R(3.3.2) which aims to streamline the bookkeepin
 The following shows the classes and their methods:
 
 * Class *single_item* : an S4 class representing an item in an order from a business owner's perspective
+    | __Method__         | __Function__                                                                           |
+    |--------------------|----------------------------------------------------------------------------------------|
+    | amount(obj, ...)   | calculates the value of the object and returns the result                              |
+    | discount(obj, ...) | returns the remaining fraction a value after it is discounted                          |
+    | is_empty(obj)      | checks if the object has only trivial slots and returns a boolean value for the result |
+    | print(obj, ...)    | siliently returns a representation of its argument as character string                 |
+
+
 * Class *all_items* : an S4 class representing all of the items in an order from a business owner's perspective
 * Class *product_transac* : an S4 class representing a transaction record of an order in a business transaction log
 * Class *product_logs* : an S4 class representing a business transaction log
