@@ -25,7 +25,7 @@ The following shows the classes and their methods:
     | amount(obj, ...)   | calculate the total amount of all of the items in the _items_ list of the object|                             
     | display(obj, ...)| show the content of the object in a more viewer-friendly format |
     | is_empty(obj)      | check if the object has only trivial slots     |
-    | print(obj, ...)    | siliently return a representation of the object as character string                 |
+    | print(obj, ...)    | siliently return a representation of the object as a character string                 |
     |remove_last(obj, ...)|remove the most recently added item from the _items_ list of the object|
 
 
@@ -44,6 +44,7 @@ The following shows the classes and their methods:
     | add(obj, item, ...)| appends an item to athe list _logs_ |
     | find_duplicate(obj, date, orn, sup, ...)| check if an order number has a duplicate in the database and return the location of the duplicate if one exists |
     | is_empty(obj)      | check if the object has only trivial slots     |
-    |join(obj, another, ...)| append another log to the calling object and returns a new _product_logs_ object with the combined logs |
-    | print(obj, ...)    | siliently return a representation of the object as character string                 |
+    |join(obj, another, ...)| append another log to the calling object and return a new _product_logs_ object with the combined logs |
+    | print(obj, ...)    | siliently return a representation of the object as a data frame |                 |
+    | order_track(obj, ...) | create a new code for the order number for each transaction in the log. |
     |remove_last(obj, ...)|remove the most recently added item from the _items_ list of the object|
