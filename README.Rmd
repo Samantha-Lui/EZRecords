@@ -11,12 +11,22 @@ The following shows the classes and their methods:
 
     | __Method__         | __Function__                                                                           |
     |--------------------|----------------------------------------------------------------------------------------|
+    | amount(obj, ...)   | calculate the value of the item                              |
+    | discount(obj, ...) | calculate the remaining fraction a value after it is discounted                          |
+    | is_empty(obj)      | check if the object has only trivial slots  |
+    | print(obj, ...)    | siliently returns a representation of its argument as character string                 |
+
+
+* Class __*all_items*__ : an S4 class representing all of the items in an order from a business owner's perspective
+
+    | __Method__         | __Function__                                                                           |
+    |--------------------|----------------------------------------------------------------------------------------|
+    | add(obj, item, ...)| appends an item to athe list _items_ 
     | amount(obj, ...)   | calculates the value of the object and returns the result                              |
     | discount(obj, ...) | returns the remaining fraction a value after it is discounted                          |
     | is_empty(obj)      | checks if the object has only trivial slots and returns a boolean value for the result |
     | print(obj, ...)    | siliently returns a representation of its argument as character string                 |
 
 
-* Class __*all_items*__ : an S4 class representing all of the items in an order from a business owner's perspective
 * Class __*product_transac*__ : an S4 class representing a transaction record of an order in a business transaction log
 * Class __*product_logs*__ : an S4 class representing a business transaction log
