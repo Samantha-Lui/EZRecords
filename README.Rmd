@@ -23,7 +23,7 @@ The following shows the classes and their methods:
     |--------------------|----------------------------------------------------------------------------------------|
     | add(obj, item, ...)| appends an item to athe list _items_ 
     | amount(obj, ...)   | calculate the total amount of all of the items in the _items_ list of the object|                             
-    | display(obj, ...)| show the content of the object in a more viewer-friendly format while \emph{print} provides a compact form of the content for bookkeeping               |
+    | display(obj, ...)| show the content of the object in a more viewer-friendly format |
     | is_empty(obj)      | checks if the object has only trivial slots     |
     | print(obj, ...)    | siliently returns a representation of its argument as character string                 |
     |remove_last(obj, ...)|remove the most recently added item from the _items_ list of the object|
