@@ -22,10 +22,11 @@ The following shows the classes and their methods:
     | __Method__         | __Function__                                                                           |
     |--------------------|----------------------------------------------------------------------------------------|
     | add(obj, item, ...)| appends an item to athe list _items_ 
-    | amount(obj, ...)   | calculates the value of the object and returns the result                              |
-    | discount(obj, ...) | returns the remaining fraction a value after it is discounted                          |
-    | is_empty(obj)      | checks if the object has only trivial slots and returns a boolean value for the result       |
+    | amount(obj, ...)   | calculate the total amount of all of the items in the _items_ list of the object|                             
+    | display(obj, ...)| show the content of the object in a more viewer-friendly format while \emph{print} provides a compact form of the content for bookkeeping               |
+    | is_empty(obj)      | checks if the object has only trivial slots     |
     | print(obj, ...)    | siliently returns a representation of its argument as character string                 |
+    |remove_last(obj, ...)|remove the most recently added item from the _items_ list of the object|
 
 
 * Class __*product_transac*__ : an S4 class representing a transaction record of an order in a business transaction log
