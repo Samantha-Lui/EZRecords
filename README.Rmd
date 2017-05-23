@@ -8,6 +8,7 @@ EZRecords is a package built on R(3.3.2) which aims to streamline the bookkeepin
 The following shows the classes and their methods:
 
 * Class *single_item* : an S4 class representing an item in an order from a business owner's perspective
+
     | __Method__         | __Function__                                                                           |
     |--------------------|----------------------------------------------------------------------------------------|
     | amount(obj, ...)   | calculates the value of the object and returns the result                              |
