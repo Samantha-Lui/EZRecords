@@ -7,7 +7,7 @@ EZRecords is a package built on R(3.3.2) which aims to streamline the bookkeepin
 
 The following shows the classes and their methods:
 
-* Class *single_item* : an S4 class representing an item in an order from a business owner's perspective
+* Class __*single_item*__ : an S4 class representing an item in an order from a business owner's perspective
 
     | __Method__         | __Function__                                                                           |
     |--------------------|----------------------------------------------------------------------------------------|
@@ -17,6 +17,6 @@ The following shows the classes and their methods:
     | print(obj, ...)    | siliently returns a representation of its argument as character string                 |
 
 
-* Class *all_items* : an S4 class representing all of the items in an order from a business owner's perspective
-* Class *product_transac* : an S4 class representing a transaction record of an order in a business transaction log
-* Class *product_logs* : an S4 class representing a business transaction log
+* Class __*all_items*__ : an S4 class representing all of the items in an order from a business owner's perspective
+* Class __*product_transac*__ : an S4 class representing a transaction record of an order in a business transaction log
+* Class __*product_logs*__ : an S4 class representing a business transaction log
