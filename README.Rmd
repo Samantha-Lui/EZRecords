@@ -47,4 +47,4 @@ The following shows the classes and their methods:
     |join(obj, another, ...)| append another log to the calling object and return a new _product_logs_ object with the combined logs |
     | order_track(obj, ...) | create a new code for the order number for each transaction in the log. |
     | print(obj, ...)    | siliently return a representation of the object as a data frame |                 |
-    |show_all_items_info(obj, ...)| extract information about each transaction including the date of transaction, type of transaction, category, and model inside the log for later summary |
+    |show_all_items_info(obj, ...)| extract information about each transaction including the date, type, category, and model inside the log for later summary |
