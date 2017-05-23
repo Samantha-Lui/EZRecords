@@ -45,6 +45,6 @@ The following shows the classes and their methods:
     | find_duplicate(obj, date, orn, sup, ...)| check if an order number has a duplicate in the database and return the location of the duplicate if one exists |
     | is_empty(obj)      | check if the object has only trivial slots     |
     |join(obj, another, ...)| append another log to the calling object and return a new _product_logs_ object with the combined logs |
-    | print(obj, ...)    | siliently return a representation of the object as a data frame |                 |
     | order_track(obj, ...) | create a new code for the order number for each transaction in the log. |
-    |remove_last(obj, ...)|remove the most recently added item from the _items_ list of the object|
+    | print(obj, ...)    | siliently return a representation of the object as a data frame |                 |
+    |show_all_items_info(obj, ...)| extract information about each transaction including the date of transaction, type of transaction, category, and model inside the log for later summary |
