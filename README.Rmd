@@ -1,37 +1,9 @@
-Package: EZRecords
-Title: Easy Bookkeeping and Stock Management for Retails
-Version: 1.2
-Authors@R: person("Samantha", "Lui", email = "sluimathematics@gmail.com", role = c("aut", "cre"))
-Description: EZRecords streamlines the bookkeeping and stock management for retail businesses. Users
-                can either use the the application included in the package directly or suit themselves 
-                by working with various functionalities provided in the package at the backend. Upon 
-                data entry for a transaction, be it one for a sale, a purchase of materials, or a transaction 
-                item other than those formerly mentioned, the record are stored in a compact form, reflected 
-                in the stock status, and summarised among the others. Additionally, an invoice generating 
-                system is also included in the package: a customized invoice number is generated and tracked 
-                for each sale automatically.
-Depends: R (>= 3.3.2)
-License: N/A
-Encoding: UTF-8
-LazyData: true
-Collate: 
-    'single_item.R'
-    'all_items.R'
-    'product_transac.R'
-    'add.R'
-    'amount.R'
-    'discount.R'
-    'display.R'
-    'find_duplicate.R'
-    'invoice.R'
-    'is_empty.R'
-    'join.R'
-    'order_track.R'
-    'print.R'
-    'product_logs.R'
-    'remove_last.R'
-    'runEZRApp.R'
-    'show_all_items_info.R'
-    'show_duplicate.R'
-    'show_stock.R'
-RoxygenNote: 6.0.1
+# **EZRecords Package**
+
+
+
+## Overview
+EZRecords is a package built on R(3.3.2) which aims to streamline the bookkeeping and stock management for retail/reselling businesses. Users can either utilize the stapled application, [EZRecords APP](https://samantheluidatascience.shinyapps.io/EZRecords_App_Demo/), or suit themselves with the functionality offered by the package at the backend.
+
+The following shows the classes and their methods:
+
