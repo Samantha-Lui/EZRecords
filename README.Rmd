@@ -10,11 +10,11 @@ The following shows the classes and their methods:
 * Class __*single_item*__ : an S4 class representing an item in an order from a business owner's perspective
 
     | __Method__         | __Function__                                                                           |
-    |--------------------|----------------------------------------------------------------------------------------|
-    | amount(obj, ...)   | calculate the value of the item                              |
-    | discount(obj, ...) | calculate the remaining fraction a value after it is discounted                          |
-    | is_empty(obj)      | check if the object has only trivial slots  |
-    | print(obj, ...)    | siliently returns a representation of its argument as character string                 |
+    |--------------------|-----------------------------------------------------------------------|
+    | amount(obj, ...)   | calculate the value of the item|
+    | discount(obj, ...) | calculate the remaining fraction of a value after it is discounted|
+    | is_empty(obj)      | check if the object has only trivial slots|
+    | print(obj, ...)    | siliently return a representation of its argument as character string|
 
 
 * Class __*all_items*__ : an S4 class representing all of the items in an order from a business owner's perspective
