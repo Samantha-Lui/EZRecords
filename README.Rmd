@@ -38,6 +38,9 @@ The following shows the classes and their methods:
 
 * Class __*product_transac*__ : an S4 class representing a transaction record of an order in a business transaction log
 
+  | product_transac(date, transac, category, descrp , supplier_customer, order_no, value, tax, shipment, total, time_stamp)| 
+  |-----------------------------------------------------------------------------------------|
+
     | __Method__         | __Function__                                                                           |
     |--------------------|-----------------------------------------------------------------------|
     | is_empty(obj)      | check if the object has only trivial slots|
