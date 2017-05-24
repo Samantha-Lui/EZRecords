@@ -23,6 +23,9 @@ The following shows the classes and their methods:
 
 * Class __*all_items*__ : an S4 class representing all of the items in an order from a business owner's perspective
 
+  | all_items(items)| 
+  |-----------------------------------------------------------------------------------------|
+  
     | __Method__         | __Function__                                                                           |
     |--------------------|----------------------------------------------------------------------------------------|
     | add(obj, item, ...)| appends an item to athe list _items_ 
