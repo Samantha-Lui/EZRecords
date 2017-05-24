@@ -49,4 +49,4 @@ The following shows the classes and their methods:
     | print(obj, ...)    | siliently return a representation of the object as a data frame |                 |
     |show_all_items_info(obj, ...)| extract information about each transaction including the date, type, category, and model inside the log for later summary |
     | show_duplicate(obj, date, orn, sup, ...) | display the existing record of transaction in the log who has the same order number as the one entered by the user |
-    | show_stock(obj, ...) |  extract the pertinent items' information for each item from each transaction record of the business log and return the result for further calculation of the stock status of product |
+    | show_stock(obj, ...) |  extract the pertinent items' information for each item from each transaction record of the business log for further calculation of the stock status |
