@@ -49,6 +49,9 @@ The following shows the classes and their methods:
 
 * Class __*product_logs*__ : an S4 class representing a business transaction log
 
+  | product_logs(logs)| 
+  |-----------------------------------------------------------------------------------------|
+
     | __Method__         | __Function__                                                                           |
     |--------------------|----------------------------------------------------------------------------------------|
     | add(obj, item, ...)| appends an item to athe list _logs_ |
@@ -63,6 +66,10 @@ The following shows the classes and their methods:
     
     
 * Class __*invoice*__ : an S4 class which handles order number generation and keeps the order numbers in a tracking system
+
+  | invoice(fname, part1, part2, count_begins_at)| 
+  |-----------------------------------------------------------------------------------------|
+
 
     | __Method__         | __Function__                                                                           |
     |--------------------|----------------------------------------------------------------------------------------|
