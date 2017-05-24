@@ -9,9 +9,8 @@ The following shows the classes and their methods:
 
 * Class __*single_item*__ : an S4 class representing an item in an order from a business owner's perspective
 
-  |---------------------------------------------------------------------------|
-  |single_item(category, descrp, model, quant, price, discount, amount, sample, 
-  sampling)|
+  | single_item(category, descrp, model, quant, price, discount, amount, sample, sampling)| 
+  |-----------------------------------------------------------------------------------------|
 
 
     | __Method__         | __Function__                                                                           |
