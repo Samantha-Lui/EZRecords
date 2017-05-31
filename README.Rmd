@@ -74,3 +74,6 @@ The following shows the classes and their methods:
     | __Method__         | __Function__                                                                           |
     |--------------------|----------------------------------------------------------------------------------------|
     | invoice(obj, is_sampling)| generate an order number for the transaction when a sale is made |
+
+
+For details, please see https://github.com/Samantha-Lui/EZRecords/tree/master/man.
